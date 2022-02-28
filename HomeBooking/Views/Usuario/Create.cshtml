@@ -1,0 +1,78 @@
+﻿@model Infraestructura.Models.Usuario
+
+@{
+    ViewBag.Title = "Registrarse";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+@using (Html.BeginForm("Create", "Usuario", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="Glass" style="color:#0d4456">
+
+        <div class="card-body">
+            <div class="form-horizontal">
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <label>Identificacion:</label>
+                        @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "text", Type = "text" } })
+                        @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Nombre:
+                        </label>
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "text", Type = "text" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Primer apellido:
+                    </label>
+                    @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "text", Type = "text" } })
+                    @Html.ValidationMessageFor(model => model.PrimerApellido, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-wrap">
+                    <label>
+                        Segundo apellido:
+                    </label>
+                    @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "text", Type = "text" } })
+                    @Html.ValidationMessageFor(model => model.SegundoApellido, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-wrap">
+                    <label>
+                        Contraseña:
+                    </label>
+                    @Html.EditorFor(model => model.Contraseña, new { htmlAttributes = new { @class = "text", Type = "text" } })
+                    @Html.ValidationMessageFor(model => model.Contraseña, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-wrap">
+                    <label>
+                        Correo:
+                    </label>
+                    @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "text", Type = "text" } })
+                    @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-wrap">
+                    <label>
+                        Telefono:
+                    </label>
+                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "text", Type = "text" } })
+                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" id="b" class="btn btn-success rounded">Registrase</button>
+
+            </div>
+        </div>
+    </div>
+
+        @*<ul class="tab-group">
+                <li class="tab">@Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { @class = "nav-link" })</li>
+                <li class="tab active">@Html.ActionLink("Registrase", "Create", "Usuario", null, new { @class = "nav-link" })</li>
+            </ul>*@
+
+}

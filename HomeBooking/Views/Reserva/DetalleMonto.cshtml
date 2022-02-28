@@ -1,0 +1,36 @@
+﻿
+
+<div class="row">
+    <table class="table table-striped ">
+        <tbody>
+            <tr>
+                <td class="left">
+                    <strong>Total sin IVA:</strong>
+                    <br />
+                    <strong>IVA:</strong>
+                    <br />
+                    <strong>Total:</strong>
+                </td>
+                <td class="right">
+                    @{
+                        double s = (double)Web.ViewModel.Carrito.Instancia.AllSubTotal();
+                        double Iva = s * 0.30;
+                        double total = s + Iva;
+
+                    }
+                    <span>&cent;<strong id="sub">@s.ToString()</strong></span>
+                    <br>
+                    <span>&cent;<strong id="iva">@Iva.ToString()</strong></span>
+                    <br>
+                    <span>&cent;<strong id="tot">@total.ToString()</strong></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/cantidad")
+}

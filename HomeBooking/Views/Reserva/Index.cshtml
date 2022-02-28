@@ -1,0 +1,103 @@
+﻿@model Infraestructura.Models.Reserva
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Save", "Orden", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IDCliente, htmlAttributes: new { @class = "col-form-label " })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(model => model.IDCliente, (SelectList)ViewBag.idCliente, " Seleccione un cliente ", htmlAttributes: new { @class = "mw-100 form-control " })
+                        @Html.ValidationMessageFor(model => model.IDCliente, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FechaLlegada, htmlAttributes: new { @class = "col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.FechaLlegada, htmlAttributes: new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.FechaLlegada, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FechaSalida, htmlAttributes: new { @class = "col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.FechaSalida, htmlAttributes: new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.FechaSalida, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Submit -->
+    <button type="submit" class="btn btn-success float-right" id="btnOrdenar">
+        <span class="glyphicon  glyphicon-floppy-save"></span>
+        Guardar
+    </button>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    <script type="text/javascript">
+
+        ////Actualizar cantidad de libros en el carrito
+        ////Cambio de cantidad en caja de texto
+        //function updateCantidad(ctr) {
+        //    var txtCantidad = $(ctr);
+        //    var cantidad = txtCantidad.val();
+        //    var id = txtCantidad.data("libroid");
+        //    $.ajax({
+        //        type: "GET",
+        //        dataType: 'text',
+        //        url: "/Orden/actualizarCantidad",
+        //        data: { "idLibro": id, "cantidad": cantidad },
+        //        success: function (data) {
+        //            $("#resultadoDetalle").html('');
+        //            $("#resultadoDetalle").html(data);
+        //            updateCantLibros();
+        //        }, error: function (xhr, status, error) {
+        //            console.log("Error: " + error + ", No Error: " + xhr.status);
+        //        },
+        //    });
+        //}
+
+        //Actualizar cantidad de libros en el menú
+        function updateCantLibros() {
+            $.ajax({
+                type: "GET",
+                dataType: 'text',
+                url: "/Orden/actualizarOrdenCantidad",
+                success: function (data) {
+                    $("#cantidadLibros").html('');
+                    $("#cantidadLibros").html(data);
+                }, error: function (xhr, status, error) {
+                    console.log("Error: " + error + ", No Error: " + xhr.status);
+                },
+            });
+        }
+
+    </script>
+}

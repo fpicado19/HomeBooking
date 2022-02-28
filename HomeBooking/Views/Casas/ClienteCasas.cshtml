@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Infraestructura.Models.Casa>
+
+@{
+    ViewBag.Title = "ClienteCasas";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+<div class="Glass" style="color:#0d4456">
+
+    <div class="card-body">
+
+
+        <div class="row-mb-3">
+            <h2>Información de casas</h2>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdCasa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IDTipoCasa)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCasa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDTipoCasa)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</div>

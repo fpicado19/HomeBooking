@@ -1,0 +1,113 @@
+﻿@model Infraestructura.Models.Reserva
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Formulario</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="Glass">
+
+        <div class="card-body">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2>Reserva</h2>
+            <br />
+            <div class="row mb-3">
+                @Html.LabelFor(model => model.ID, "Cedula", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                @Html.LabelFor(model => model.IDCliente, "Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownList("IDCliente", null, htmlAttributes: new { @class = "form-control" })*@
+                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+
+                    @Html.ValidationMessageFor(model => model.IDCliente, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <!--<div class="form-group">
+            @Html.LabelFor(model => model.IDFactura, "Factura", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">-->
+            @*@Html.DropDownList("IDFactura", null, htmlAttributes: new { @class = "form-control" })*@
+            <!--@Html.ValidationMessageFor(model => model.IDFactura, "", new { @class = "text-danger" })
+            </div>
+        </div>-->
+
+            <div class="row mb-3">
+                @Html.LabelFor(model => model.FechaLlegada, "Fecha de Llegada", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaLlegada, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaLlegada, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                @Html.LabelFor(model => model.FechaSalida, "Fecha de Salida", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaSalida, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaSalida, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-check">
+                @*@Html.LabelFor(model => model.IDCasa, "Casa", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    @*@Html.DropDownList("IDCasa", null, htmlAttributes: new { @class = "form-control" })*@
+                    @Html.ValidationMessageFor(model => model.IDCasa, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Casa Playa
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Casa Montaña
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="d-grid gap-2">
+                <input type="submit" value="Reservar" class="btn btn-light" />
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    }
+
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+
+
+</body>
+</html>

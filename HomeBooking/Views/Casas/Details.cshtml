@@ -1,0 +1,59 @@
+﻿@model Infraestructura.Models.Casa
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="Glass" style="color:#0d4456">
+
+    <div class="card-body">
+
+
+        <div class="row-mb-3">
+            <h2>Detalle de casa</h2>
+
+        </div>
+        <dl class="dl-horizontal">
+                <img class="rounded mx-auto d-block" style="height:350px; width:800px; margin-top:5%" src="data:image/jpeg;charset=utf-8;base64, @Convert.ToBase64String(Model.Foto)">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IdCasa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdCasa)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Precio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Precio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IDTipoCasa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IDTipoCasa)
+            </dd>
+
+        </dl>
+    </div>
+    </div>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new {  id = Model.IdCasa }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

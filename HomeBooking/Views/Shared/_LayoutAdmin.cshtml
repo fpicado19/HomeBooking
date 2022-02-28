@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="~/CSS/Style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top GlassNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Home/AdminHome" style="font-size:x-large; color:#0d4456">HomeBooking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:large; color:#0d4456">
+                            Gestiones
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/Casas/AdminCasas" style="font-size:large; color:#0d4456">Gestión de casas</a></li>
+                            <li><a class="dropdown-item" href="/Servicios/AdminServicio" style="font-size:large; color:#0d4456">Gestión servicios</a></li>
+                            <li><a class="dropdown-item" href="/Reserva/IndexAdmin" style="font-size:large; color:#0d4456">Gestión Reservas</a></li>
+                            <li><a class="dropdown-item" href="/Reporte/GraficoPedido" style="font-size:large; color:#0d4456">Gestión Reservas</a></li>
+                        </ul>
+                    </li>
+
+                    @* Información usuario *@
+                    @{ string nombre = "";
+                        string email = "Perfil";
+                        Infraestructura.Models.Usuario oUsuario;
+                        //Validar si existe en la sesión
+                        if (Session["User"] != null)
+                        {
+                            oUsuario = (Infraestructura.Models.Usuario)Session["User"];
+                            if (oUsuario != null)
+                            {
+                                nombre = $"{oUsuario.Nombre} {oUsuario.PrimerApellido}";
+                                email = oUsuario.Correo;
+                            }
+                        } }
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:large; color:#0d4456">@email</a>
+
+                        <div class="dropdown-menu">
+                            @if (Session["User"] != null)
+                            {
+                <div class="dropdown-item">
+                    @* Nombre Usuario *@
+                    Usuario: @nombre
+                </div>}
+
+                            <div class="dropdown-divider"></div>
+                            @if (Session["User"] == null)
+                            {
+                @Html.ActionLink("Login", "Index", "Login", null, new { @class = "dropdown-item" }) }
+            else
+            {
+
+                @Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "dropdown-item " })}
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+        <footer class="GlassNavbar footer mt-auto py-3">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-7">
+                        <p>© 2021 - Todos los derechos reservados</p>
+                    </div>
+                    <div class="col-5">
+                        <div style="float:right">
+                            <a class="social" href="" target="_blank">
+                                <img src="/Images/facebook.png" width="40" height="40" alt="">
+                            </a>
+                            <a class="social" href="" target="_blank">
+                                <img src="/Images/instagram.png" width="40" height="40" alt="">
+                            </a>
+                            <a class="social" href="" target="_blank">
+                                <img src="/Images/telegram.png" width="40" height="40" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        window.sr = ScrollReveal();
+
+        sr.reveal('#FirstBlock', {
+            duration: 3000,
+            origin: 'left',
+            distance: '600px'
+        });
+        sr.reveal('#SecondBlock', {
+            duration: 3000,
+            origin: 'right',
+            distance: '600px'
+        });
+    </script>
+</body>
+</html>

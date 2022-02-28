@@ -1,0 +1,47 @@
+﻿@model Infraestructura.Models.Reserva
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="Glass" style="color:#0d4456">
+
+    <div class="card-body">
+
+        <div class="row-mb-3">
+            <h2>Detalle de la Reserva</h2>
+
+        </div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IDCliente)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaLlegada)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaLlegada)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaSalida)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaSalida)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "IndexCliente")
+</p>
+
+

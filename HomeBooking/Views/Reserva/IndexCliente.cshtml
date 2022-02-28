@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Infraestructura.Models.Reserva>
+
+@{
+    ViewBag.Title = "IndexCliente";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<div class="Glass" style="color:#0d4456">
+
+    <div class="card-body">
+        <div class="row-mb-3">
+            <h2>Mis reservas</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IDCliente)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaLlegada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaSalida)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IDCliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaLlegada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaSalida)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Detalle", "Details", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

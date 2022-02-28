@@ -1,0 +1,132 @@
+﻿
+@model Infraestructura.Models.Reserva
+
+@{
+    ViewBag.Title = "Reserva";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+@{
+    int ID = 0;
+
+    Infraestructura.Models.Usuario oUsuario;
+
+    if (Session["User"] != null)
+    {
+        oUsuario = (Infraestructura.Models.Usuario)Session["User"];
+        if (oUsuario != null)
+        {
+
+            ID = oUsuario.Identificacion;
+        }
+    }
+}
+@using (Html.BeginForm("registarReserva", "Reserva", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div class="Glass">
+
+    <div class="">
+        <div class="row">
+
+            <div class="col-2 m-auto pb-2">
+                <label class="text-center">Cliente:</label>
+                <div class="form-group">
+
+                    @if (Session["User"] != null)
+                    {
+                        <div class="float-right">
+                            @Html.TextBoxFor(model => model.IDCliente, htmlAttributes: new { @class = "form-control", @readonly = "readonly", @Value = @ID })
+                            @Html.ValidationMessageFor(model => model.IDCliente, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-2 m-auto pb-2">
+                <label class="text-center"># Reserva:</label>
+                <div class="form-group">
+                    <div>
+                        @Html.TextBoxFor(model => model.ID, htmlAttributes: new { @class = "form-control", @Value = @ID+""+ DateTime.Now.ToString("ss"), @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 m-auto pb-2">
+                <label class="text-center">Fecha Llegada:</label>
+                <div class="form-group">
+
+                    <div>
+                        @Html.TextBoxFor(model => model.FechaLlegada, htmlAttributes: new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") })
+                        @Html.ValidationMessageFor(model => model.FechaLlegada, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 m-auto pb-2">
+                <label class="text-center">Fecha Salida:</label>
+                <div class="form-group">
+                    <div>
+                        @Html.TextBoxFor(model => model.FechaSalida, htmlAttributes: new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") })
+                        @Html.ValidationMessageFor(model => model.FechaSalida, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="resultado">
+        @if (Web.ViewModel.Carrito.Instancia.Casa.Count() > 0)
+        {
+            @Html.Partial("~/Views/Reserva/DetalleReserva.cshtml", (List<Web.ViewModel.ViewModelOrdenDetalle>)ViewBag.DetalleOrdenCasa)
+            //Model.SubTotalCasa = @s;
+        }
+        else
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                No existen reservas registradas.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+        @if (Web.ViewModel.Carrito.Instancia.TipoServicio.Count() > 0)
+        {
+            @Html.Partial("~/Views/Reserva/DetalleServicio.cshtml", (List<Web.ViewModel.ViewModelOrdenDetalle>)ViewBag.DetalleOrdenServicio)
+            //Model.SubTotalCasa = @s;
+        }
+        else
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                No se ha registrado ningun servicio.
+            </div>
+        }
+    </div>
+    @Html.Partial("~/Views/Reserva/DetalleMonto.cshtml")
+
+
+    <div class="">
+        <a class="btn btn-info rounded" href="@Url.Action("Menu", "Reserva")" class="btn btn-info btn-lg rounded p-4">
+            <svg width="20px" height="25px" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+            </svg>
+            <p class="text-center">Ver más reservas</p>
+        </a>
+        <button type="submit" class="btn btn-success rounded float-right p-4" id="btnOrdenar">
+            Finalizar Reserva
+        </button>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/cantidad")
+}
+
+

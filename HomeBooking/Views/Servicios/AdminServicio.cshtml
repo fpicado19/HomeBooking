@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Infraestructura.Models.TipoServicio>
+
+@{
+    ViewBag.Title = "AdminServicio";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="Glass" style="color:#0d4456">
+
+    <div class="card-body">
+        <div class="row-mb-3">
+            <h2>Gestión de servicios</h2>
+            <a class="btn btn-default" href="/Servicios/Create" role="button" style="background-color:#0d4456; color:white; float:right">Agregar</a>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</div>

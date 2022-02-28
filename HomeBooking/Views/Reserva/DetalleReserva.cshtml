@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Web.ViewModel.ViewModelOrdenDetalle>
+
+<div class="Glass" style="text-transform: none !important;">
+    <table class="table table-striped ">
+        <tr>
+            <th class="text-center">
+                Casa
+            </th>
+            <th class="text-center">
+                Precio
+            </th>
+            <th class="text-center"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.HiddenFor(modelItem => item.casa.IdCasa)
+                    @Html.DisplayFor(modelItem => item.casa.Descripcion)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.casa.Precio)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/cantidad")
+}

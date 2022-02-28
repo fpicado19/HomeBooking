@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="99a6ed9dfd3a4ad485daead3b539ee8a" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="Booking_HomeModel.Casa" Width="1.5" PointX="6.875" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Booking_HomeModel.Factura" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Booking_HomeModel.Reserva" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Booking_HomeModel.Rol" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Booking_HomeModel.TipoCasa" Width="1.5" PointX="4.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Booking_HomeModel.TipoPago" Width="1.5" PointX="2.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Booking_HomeModel.TipoServicio" Width="2.25" PointX="9.625" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Booking_HomeModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Booking_HomeModel.FK_Casa_TipoCasa" ManuallyRouted="false" />
+        <AssociationConnector Association="Booking_HomeModel.FK_Factura_TipoPago" ManuallyRouted="false" />
+        <AssociationConnector Association="Booking_HomeModel.FK_Factura_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Booking_HomeModel.FK_Reserva_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Booking_HomeModel.FK_Usuario_Rol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Booking_HomeModel.ReservaDetalles" Width="1.5" PointX="13.5" PointY="3.625" />
+        <AssociationConnector Association="Booking_HomeModel.FK_ReservaDetalles_Casa" />
+        <AssociationConnector Association="Booking_HomeModel.FK_ReservaServicios_Reserva" />
+        <AssociationConnector Association="Booking_HomeModel.FK_Factura_Reserva" />
+        <EntityTypeShape EntityType="Booking_HomeModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Booking_HomeModel.ServicioSolicitado" Width="1.5" PointX="15.375" PointY="1.75" />
+        <AssociationConnector Association="Booking_HomeModel.FK_ServicioSolicitado_TipoServicio1" />
+        <AssociationConnector Association="Booking_HomeModel.FK_ServicioSolicitado_Reserva" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
